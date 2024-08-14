@@ -1,5 +1,5 @@
 import {Request, Response, NextFunction} from 'express';
-import User from '../config/Model/model.sequelize';
+import User from '../config/Model/model.sequelize'
 import Crypt from '../api/auth/api.auth.crypt';
 import Token from '../api/auth/api.auth.jwt';
 import { JWTVerifyResult } from 'jose';
