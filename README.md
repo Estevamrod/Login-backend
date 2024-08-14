@@ -1,96 +1,59 @@
+# Back-end para tela de Login
+O respositório desse trabalho é, essencialmente, para demonstrar todas as configurações e tecnologias aplicadas para a realização desse projeto. Além de servir como uma porta para discussões de boas práticas. 
+Esse projeto é totalmente de cunho exemplificativo, por isso o arquivo ".env" não foi ignorado no momento do push a nuvem.
 
-# Trabalho back-end de Tela de Login    
+## Tecnologias utilizadas
 
-Esse trabalho tem como objetivo guardar minha evolução com o decorrer do tempo em relação ao desenvolvimento de projetos mais complexos.
-O código tem como foco criar o back-end de uma tela de login, com authenticação pelo Google ou pelo Github e também, gerar um token com tempo limite que após expirar, gera um novo token.
+* ![Typescript](https://img.shields.io/npm/v/typescript?color=blue&label=Typescript&logo=typescript&logoColor=blue)
+* ![NodeJs](https://img.shields.io/npm/v/node?color=green&label=Nodejs&logo=nodedotjs&logoColor=green)
+* ![Express](https://img.shields.io/npm/v/express?color=green&label=Express&logo=express&logoColor=green)
+* ![Sequelize](https://img.shields.io/npm/v/sequelize?color=blue&label=Sequelize&logo=sequelize&logoColor=blue)
+* ![Axios](https://img.shields.io/npm/v/axios?color=purple&label=Axios&logo=axios&logoColor=purple)
+* ![Bcrypt](https://img.shields.io/npm/v/bcrypt?color=red&label=Bcrypt&logo=bcrypt&logoColor=red)
+* ![JWT](https://img.shields.io/npm/v/jsonwebtoken?color=black&label=Nodejs&logo=jsonwebtokens&logoColor=black)
+* ![dotenv](https://img.shields.io/npm/v/dotenv?color=black&label=dotenv&logo=dotenv&logoColor=white)
+* ![cors](https://img.shields.io/npm/v/jsonwebtoken?color=black&label=cors&logoColor=black)
+* ![MySql](https://img.shields.io/npm/v/mysql?color=yellow&label=MySql&logo=mysql&logoColor=yellow)
 
-## Funcionalidades
+## Instalação
 
-- Possibilitar o cadastro de novos usuários, utilizando criptografia
-- Possibilitar o login dos mesmos usuários
-- Gerar tokens de acessos e renovação do mesmo
-- Possibilitar o login por 2 plataformas externas, Google e Github
-
-## Stack utilizada
-
-**Back-end:** Node, Express, JWT (jose), Github authenticator, Google Authenticator, Sequelize, Bcrypt e Typescript
-
-## Documentação da API
-
-#### Para cadastro
-
-```http
-  POST /api/cadastro
+```git
+git clone https://github.com/Estevamrod/Login-backend.git
+```
+```Console
+cd Login_backend/
+```
+```Typescript
+npm install
 ```
 
-| Body Schema   | Tipo       | Descrição                          |
-| :---------- | :--------- | :---------------------------------- |
-| `username` | `string` | **Obrigatório**. Tem que ter um nome de usuário. |
-| `email` | `string` | **Obrigatório**. Tem que ter um email, contento o dominio. |
-| `senha` | `string` | **Obrigatório**. Tem que ter uma senha, não sendo importante o tamanho. |
-| `data_nasc` | `Date` | **Obrigatório**. Tem que ter uma data, sendo nesse padrão "aaaa-mm-dd" |
+Após esses pasos terem sido realizados, antes de iniciar o servidor precisa-se criar um banco de dados com o nome 'login_back' e após isso, 
+criar uma tabela chamada 'user'. No exemplo abaixo estarei deixando o código em mysql para tal ação.
 
-#### Para login
+```Console
+CREATE DATABASE `login_back`;
 
-```http
-  POST /api/login
+CREATE TABLE `user` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `senha` varchar(300) NOT NULL,
+  `data_nasc` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
-| Body Schema   | Tipo       | Descrição                          |
-| :---------- | :--------- | :---------------------------------- |
-| `email` | `string` | **Obrigatório**. Tem que ter um email, contento o dominio. |
-| `senha` | `string` | **Obrigatório**. Tem que ter uma senha, não sendo importante o tamanho. |
+Após esse passo pode-se iniciar o servidor backend.
 
-#### Para login com o Google
-
-```http
-  POST /api/googleSign
+```Typescript
+npm run dev:back
 ```
 
-| Body Schema   | Tipo       | Descrição                          |
-| :---------- | :--------- | :---------------------------------- |
-| `googleToken` | `string` | **Obrigatório**. Você precisa inserir um token retonardo pelo próprio google, que nele possui as informações do usuário |
+## Autor
+<div style="display:flex; flex-direction:column; justify-content:center">
+    <img src="https://avatars.githubusercontent.com/u/115419827?v=4" style="border-radius:50%; width:60px"/>
+    <a href="https://www.github.com/Estevamrod" target="_blank">
+        <span style="margin-top:12px">Estevamrod</span>
+    </a>
+</div>
 
-#### Para login com o Github
-
-```http
-  POST /api/github
-```
-
-| Body Schema   | Tipo       | Descrição                          |
-| :---------- | :--------- | :---------------------------------- |
-| `code` | `string` | **Obrigatório**. Você precisa inserir um token retonardo pelo próprio code, que nele possui as informações do usuário |
-
-**[Github docs](https://docs.github.com/pt/apps/oauth-apps/building-oauth-apps/authorizing-oauth-apps)**
-
-#### Para gerar um novo token
-
-```http
-  POST /api/auth/refreshToken
-```
-
-| Body Schema   | Tipo       | Descrição                          |
-| :---------- | :--------- | :---------------------------------- |
-| `oldAccessToken` | `string` | **Obrigatório**. Você precisa inserir o token que expirou |
-
-
-#### Para verificar se o token expirou
-
-```http
-  GET /api/auth/accessVerification
-```
-
-| Header Schema | Tipo       | Descrição                          |
-| :---------- | :--------- | :---------------------------------- |
-| `x-access-token` | `string` | **Obrigatório**. Precisa estar inserido o token de acesso |
-
-#### Retorna todos os items
-
-```http
-  GET /
-```
-
-
-## Autores
-
-- [@Estevamrod](https://github.com/Estevamrod)

@@ -16,16 +16,17 @@
     "@types/express": "^4.17.17",
     "@types/mysql": "^2.15.21",
     "@types/node-localstorage": "^1.3.0",
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.1.4"
   },
   "dependencies": {
+    "@sequelize/mysql": "^7.0.0-alpha.41",
     "axios": "^1.5.0",
     "bcrypt": "^5.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jose": "^4.14.6",
-    "mysql2": "^3.6.5",
+    "mysql2": "^3.11.0",
     "node-localstorage": "^3.0.5",
     "sequelize": "^6.35.2",
     "ts-node": "^10.9.2"
